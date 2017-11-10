@@ -20,13 +20,13 @@ class Newest extends Component {
   handleChangePage () {
     tmdb().get('discover/movie', {
       params: {
-        page: store.pageResultNewest,
-        sort_by: 'revenue.desc',
+        page: store.pageResultTopRated,
+        sort_by: 'original_title.asc',
         language: 'fr'
       }
     }).then((res) => {
       if (this.state.page === res.data.total_pages) this.setState({hasMore: false})
-      store.addResultNewest(res.data.results)
+      store.addResultTopRated(res.data.results)
     }).catch((err) => {
       console.log(err.response)
     })
@@ -35,7 +35,7 @@ class Newest extends Component {
   render () {
     return (
       <div>
-        <Grid handleChangePage={this.handleChangePage} hasMore={this.state.hasMore} result={store.resultNewest} history={this.props.history} />
+        <Grid handleChangePage={this.handleChangePage} hasMore={this.state.hasMore} result={store.resultTopRated} history={this.props.history} />
       </div>
     )
   }

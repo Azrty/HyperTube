@@ -20,13 +20,13 @@ class z_a extends Component {
   handleChangePage () {
     tmdb().get('discover/movie', {
       params: {
-        page: store.pageResultz_a,
+        page: store.pageResultTopRated,
         sort_by: 'original_title.desc',
         language: 'fr'
       }
     }).then((res) => {
       if (this.state.page === res.data.total_pages) this.setState({hasMore: false})
-      store.addResultz_a(res.data.results)
+      store.addResultTopRated(res.data.results)
     }).catch((err) => {
       console.log(err.response)
     })
@@ -35,7 +35,7 @@ class z_a extends Component {
   render () {
     return (
       <div>
-        <Grid handleChangePage={this.handleChangePage} hasMore={this.state.hasMore} result={store.resultz_a} history={this.props.history} />
+        <Grid handleChangePage={this.handleChangePage} hasMore={this.state.hasMore} result={store.resultTopRated} history={this.props.history} />
       </div>
     )
   }

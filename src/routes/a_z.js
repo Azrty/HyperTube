@@ -6,7 +6,7 @@ import { observer } from 'mobx-react'
 
 @observer
 
-class a_z extends Component {
+class A_z extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -20,13 +20,13 @@ class a_z extends Component {
   handleChangePage () {
     tmdb().get('discover/movie', {
       params: {
-        page: store.pageResulta_z,
+        page: store.pageResultA_z,
         sort_by: 'original_title.desc',
         language: 'fr'
       }
     }).then((res) => {
       if (this.state.page === res.data.total_pages) this.setState({hasMore: false})
-      store.addResulta_z(res.data.results)
+      store.addResultA_z(res.data.results)
     }).catch((err) => {
       console.log(err.response)
     })
@@ -35,10 +35,10 @@ class a_z extends Component {
   render () {
     return (
       <div>
-        <Grid handleChangePage={this.handleChangePage} hasMore={this.state.hasMore} result={store.resulta_z} history={this.props.history} />
+        <Grid handleChangePage={this.handleChangePage} hasMore={this.state.hasMore} result={store.resultA_z} history={this.props.history} />
       </div>
     )
   }
 }
 
-export default a_z
+export default A_z
