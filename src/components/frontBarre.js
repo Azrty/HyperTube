@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Menu, Input } from 'semantic-ui-react'
+import { Menu, Input, Dropdown} from 'semantic-ui-react'
 import { tmdb, local } from '../utils/api'
 import store from '../utils/store.js'
 import { observer } from 'mobx-react'
@@ -66,14 +66,22 @@ class FrontBarre extends Component {
       event.target.value = ''
     }
   }
-  
+
   render () {
     const { activeItem } = this.state
     return (
       <div id='header'>
         <Menu stackable>
           <Menu.Item name='popular' active={activeItem === 'popular'} onClick={this.handleItemClick} />
-          <Menu.Item name='top_rated' active={activeItem === 'top_rated'} onClick={this.handleItemClick} />
+          {/* <Menu.Item name='top_rated' active={activeItem === 'top_rated'} onClick={this.handleItemClick} /> */}
+          <Dropdown item text='Filter'>
+            <Dropdown.Menu>
+              <Dropdown.Item name='top_rated' active={activeItem === 'top_rated'} onClick={this.handleItemClick}>Top Rated</Dropdown.Item>
+              <Dropdown.Item name='newest' active={activeItem === 'newest'} onClick={this.handleItemClick}>Newest</Dropdown.Item>
+              <Dropdown.Item name='a_z' active={activeItem === 'a_z'} onClick={this.handleItemClick}>A-Z</Dropdown.Item>
+              <Dropdown.Item name='z_a' active={activeItem === 'z_a'} onClick={this.handleItemClick}>Z-A</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
           <Menu.Item name='profile' active={activeItem === 'profile'} onClick={this.handleItemClick} />
           <Menu.Menu position='right'>
             <Menu.Item>
